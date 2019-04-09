@@ -1,0 +1,24 @@
+package com.asofttz.firebase.firestore
+
+actual class CollectionReference {
+    actual val firestore: Firestore
+        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+    actual val id: String
+        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+
+    actual fun document(path: String): DocumentReference {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    actual fun get(): FirestoreResponse {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    actual fun set(obj: Any): Any {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+}
+
+actual fun CollectionReference.whereEqualTo(field: String, value: Any): Query {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+}
