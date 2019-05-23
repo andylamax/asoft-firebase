@@ -10,7 +10,7 @@ actual class Firestore {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    actual fun document(path: String): CollectionReference {
+    actual fun document(path: String): DocumentReference {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

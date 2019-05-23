@@ -7,5 +7,6 @@ actual external class Firestore {
 
     actual fun collection(path: String): CollectionReference
 
-    actual fun document(path: String): CollectionReference
+    @JsName("doc")
+    actual fun document(path: String): DocumentReference
 }

@@ -8,3 +8,7 @@ actual class DocumentSnapshot {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
+
+actual fun <T> DocumentSnapshot.toObject(t: T?): T? {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+}

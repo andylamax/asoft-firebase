@@ -10,10 +10,6 @@ actual class CollectionReference {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    actual fun get(): FirestoreResponse {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     actual fun set(obj: Any): Any {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
@@ -21,4 +17,7 @@ actual class CollectionReference {
 
 actual fun CollectionReference.whereEqualTo(field: String, value: Any): Query {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+}
+
+actual suspend fun CollectionReference.forEach(callback: (QueryDocumentSnapshot) -> Unit) {
 }

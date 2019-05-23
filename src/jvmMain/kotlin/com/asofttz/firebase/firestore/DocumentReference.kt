@@ -10,15 +10,15 @@ actual class DocumentReference {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    actual fun get(): Any {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     actual fun set(obj: Any): Any {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
 
 actual fun DocumentReference.save(obj: Any): Any {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+}
+
+actual suspend fun <T> DocumentReference.toObject(t: T?): T? {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 }

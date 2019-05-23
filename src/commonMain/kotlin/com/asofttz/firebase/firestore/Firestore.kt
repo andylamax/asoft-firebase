@@ -7,5 +7,5 @@ expect class Firestore {
     val app: App
     fun collection(path: String): CollectionReference
     @JsName("doc")
-    fun document(path: String): CollectionReference
+    fun document(path: String): DocumentReference
 }
