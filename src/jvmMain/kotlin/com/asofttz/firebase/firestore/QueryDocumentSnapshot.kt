@@ -20,6 +20,6 @@ actual fun <T> QueryDocumentSnapshot.toObject(t: T?): T {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 }
 
-actual fun <T> QueryDocumentSnapshot.load(): T? {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+actual fun QueryDocumentSnapshot.toJson(): String? {
+    TODO()
 }

@@ -8,20 +8,20 @@ actual external class DocumentReference {
     actual val id: String
     actual fun collection(path: String): CollectionReference
     fun get(): Promise<DocumentSnapshot>
-    actual fun set(obj: Any): Any
+    fun set(obj: Any): Promise<Unit>
 }
 
 external object Object {
     fun <T> assign(target: T, vararg sources: Any): T
 }
 
-actual fun DocumentReference.save(obj: Any): Any = set(JSON.parse(JSON.stringify(obj)))
-
-actual suspend fun <T> DocumentReference.toObject(t: T?): T? {
-    val obj = get().await().toObject(t)
-    return if (obj != null) {
-        Object.assign<T>(t!!, obj!!)
-    } else {
-        null
-    }
+actual suspend fun DocumentReference.save(json: String) {
+    val obj = JSON.parse<Any>(json)
+    return save(obj)
 }
+
+actual suspend fun DocumentReference.save(obj: Any) = set(Object.assign(js("{}") as Any, obj)).await()
+
+actual suspend fun <T> DocumentReference.toObject(t: T?): T? = get().await().toObject(t)
+
+actual suspend fun DocumentReference.toJson(): String? = JSON.stringify(toObject(Unit))

@@ -9,16 +9,20 @@ actual class DocumentReference {
     actual fun collection(path: String): CollectionReference {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
-
-    actual fun set(obj: Any): Any {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 }
 
-actual fun DocumentReference.save(obj: Any): Any {
+actual suspend fun DocumentReference.save(json: String) {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+}
+
+actual suspend fun DocumentReference.save(obj: Any) {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 }
 
 actual suspend fun <T> DocumentReference.toObject(t: T?): T? {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+}
+
+actual suspend fun DocumentReference.toJson(): String? {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 }

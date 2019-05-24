@@ -9,4 +9,6 @@ actual external class QueryDocumentSnapshot {
     actual fun isEqual()
 }
 
-actual fun <T> QueryDocumentSnapshot.toObject(t: T?) : T = Object.assign(t!!,data())
+actual fun <T> QueryDocumentSnapshot.toObject(t: T?): T = Object.assign(t!!, data())
+
+actual fun QueryDocumentSnapshot.toJson(): String? = JSON.stringify(toObject(Unit))

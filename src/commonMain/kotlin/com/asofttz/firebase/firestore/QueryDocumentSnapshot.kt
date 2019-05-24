@@ -9,3 +9,5 @@ expect class QueryDocumentSnapshot {
 }
 
 expect fun <T> QueryDocumentSnapshot.toObject(t: T? = null): T
+
+expect fun QueryDocumentSnapshot.toJson(): String?
