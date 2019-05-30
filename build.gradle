@@ -85,3 +85,7 @@ kotlin {
         }
     }
 }
+
+/**
+ dependency("firebase","5.11.1")
+ */
