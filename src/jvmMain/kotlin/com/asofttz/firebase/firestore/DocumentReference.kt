@@ -26,3 +26,9 @@ actual suspend fun <T> DocumentReference.toObject(t: T?): T? {
 actual suspend fun DocumentReference.toJson(): String? {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 }
+
+actual suspend fun DocumentReference.updateAsync(obj: Any) {
+}
+
+actual suspend fun DocumentReference.updateAsync(json: String) {
+}

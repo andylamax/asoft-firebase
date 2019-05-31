@@ -9,6 +9,7 @@ actual external class DocumentReference {
     actual fun collection(path: String): CollectionReference
     fun get(): Promise<DocumentSnapshot>
     fun set(obj: Any): Promise<Unit>
+    fun update(data: Any): Promise<Unit>
 }
 
 external object Object {
@@ -25,3 +26,10 @@ actual suspend fun DocumentReference.save(obj: Any) = set(Object.assign(js("{}")
 actual suspend fun <T> DocumentReference.toObject(t: T?): T? = get().await().toObject(t)
 
 actual suspend fun DocumentReference.toJson(): String? = JSON.stringify(toObject(Unit))
+
+actual suspend fun DocumentReference.updateAsync(obj: Any) = update(Object.assign(js("{}") as Any, obj)).await()
+
+actual suspend fun DocumentReference.updateAsync(json: String) {
+    val obj = JSON.parse<Any>(json)
+    updateAsync(obj)
+}

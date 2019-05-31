@@ -9,10 +9,6 @@ actual class CollectionReference {
     actual fun document(path: String): DocumentReference {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
-
-    actual fun set(obj: Any): Any {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 }
 
 actual fun CollectionReference.whereEqualTo(field: String, value: Any): Query {
@@ -20,4 +16,12 @@ actual fun CollectionReference.whereEqualTo(field: String, value: Any): Query {
 }
 
 actual suspend fun CollectionReference.forEach(callback: (QueryDocumentSnapshot) -> Unit) {
+}
+
+actual suspend fun CollectionReference.addAsync(data: Any): DocumentReference {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+}
+
+actual suspend fun CollectionReference.addAsync(json: String): DocumentReference {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 }

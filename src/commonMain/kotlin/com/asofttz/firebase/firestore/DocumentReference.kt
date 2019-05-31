@@ -13,3 +13,7 @@ expect suspend fun DocumentReference.save(obj: Any)
 expect suspend fun <T> DocumentReference.toObject(t: T? = null): T?
 
 expect suspend fun DocumentReference.toJson(): String?
+
+expect suspend fun DocumentReference.updateAsync(obj: Any)
+
+expect suspend fun DocumentReference.updateAsync(json: String)

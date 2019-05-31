@@ -1,5 +1,7 @@
 package com.asofttz.firebase.firestore
 
 expect class Query {
-    fun get() : FirestoreResponse
+    fun limit(limit: Number) : Query
 }
+
+expect suspend fun Query.getAsync() : QuerySnapshot

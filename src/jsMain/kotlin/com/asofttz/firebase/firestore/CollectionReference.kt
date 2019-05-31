@@ -11,7 +11,8 @@ actual external class CollectionReference {
 
     fun get(): Promise<QuerySnapshot>
 
-    actual fun set(obj: Any): Any
+    fun add(obj: Any): Promise<DocumentReference>
+
     fun where(field: String, opStr: String, value: Any): Query
 }
 
@@ -19,4 +20,13 @@ actual fun CollectionReference.whereEqualTo(field: String, value: Any): Query = 
 
 actual suspend fun CollectionReference.forEach(callback: (QueryDocumentSnapshot) -> Unit) {
     val docs = get().await().forEach(callback)
+}
+
+actual suspend fun CollectionReference.addAsync(json: String): DocumentReference {
+    val data = JSON.parse<Any>(json)
+    return addAsync(data)
+}
+
+actual suspend fun CollectionReference.addAsync(data: Any): DocumentReference {
+    return add(Object.assign(js("{}"),data as Any) as Any).await()
 }
