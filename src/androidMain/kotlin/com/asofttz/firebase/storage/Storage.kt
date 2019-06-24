@@ -1,6 +1,6 @@
 package com.asofttz.firebase.storage
 
-import com.asofttz.firebase.core.FirebaseApp
+import com.google.firebase.FirebaseApp
 
 actual class Storage {
     actual val app: FirebaseApp

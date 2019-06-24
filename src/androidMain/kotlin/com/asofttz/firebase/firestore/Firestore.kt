@@ -3,16 +3,9 @@ package com.asofttz.firebase.firestore
 import com.asofttz.firebase.core.FirebaseApp
 import com.asofttz.firebase.firestore.collection.CollectionReference
 import com.asofttz.firebase.firestore.document.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore as GFirebaseFirestore
 
-
-actual external class FirebaseFirestore {
-    val app: FirebaseApp
-
-    fun collection(path: String): CollectionReference
-
-    @JsName("doc")
-    fun document(path: String): DocumentReference
-}
+actual typealias FirebaseFirestore = GFirebaseFirestore
 
 actual val FirebaseFirestore.app: FirebaseApp
     get() = app
@@ -22,7 +15,9 @@ actual fun FirebaseFirestore.collection(path: String): CollectionReference {
 }
 
 actual fun FirebaseFirestore.document(path: String): DocumentReference {
-    return document(path) as DocumentReference
+    return document(path)
 }
 
-actual fun FirebaseApp.firestore(): FirebaseFirestore = firestore()
+actual fun FirebaseApp.firestore(): FirebaseFirestore {
+    return GFirebaseFirestore.getInstance(this)
+}

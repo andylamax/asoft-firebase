@@ -1,11 +1,11 @@
 package com.asofttz.firebase.auth
 
-import com.asofttz.firebase.app.App
+import com.asofttz.firebase.core.FirebaseApp
 import kotlinx.coroutines.await
 import kotlin.js.Promise
 
 actual external class Auth {
-    actual val app: App
+    actual val app: FirebaseApp
     actual val currentUser: User
     fun createUserWithEmailAndPassword(email: String, password: String): Promise<UserCredential>
     actual fun signOut(): dynamic

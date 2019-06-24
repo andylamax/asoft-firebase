@@ -1,8 +1,8 @@
 package com.asofttz.firebase.storage
 
-import com.asofttz.firebase.app.App
+import com.asofttz.firebase.core.FirebaseApp
 
 expect class Storage {
-    val app: App
+    val app: FirebaseApp
     fun ref(path: String?) : Reference
 }

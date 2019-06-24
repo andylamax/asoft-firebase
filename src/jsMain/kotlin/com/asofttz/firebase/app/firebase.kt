@@ -1,10 +1,10 @@
-@file:JsModule("firebase")
-
-// version 5.11.1
-
 package com.asofttz.firebase.app
 
+import com.asofttz.firebase.core.FirebaseApp
+import com.asofttz.firebase.core.FirebaseOptions
+
+@JsModule("firebase")
 @JsName("default")
-actual external object firebase {
-    actual fun initializeApp(options: Options, name: String?): App
+external object firebase {
+    fun initializeApp(options: FirebaseOptions, name: String? = definedExternally): FirebaseApp
 }

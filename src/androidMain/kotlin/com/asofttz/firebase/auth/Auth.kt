@@ -1,6 +1,6 @@
 package com.asofttz.firebase.auth
 
-import com.asofttz.firebase.core.FirebaseApp
+import com.google.firebase.FirebaseApp
 
 actual class Auth {
     actual val app: FirebaseApp

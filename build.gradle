@@ -1,8 +1,13 @@
 buildscript {
-    ext {
-        kotlin_version = "1.3.31"
+    ext.kotlin_version = '1.3.31'
+    repositories {
+        google()
+        jcenter()
+
     }
-    dependencies{
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
     }
 }
@@ -11,18 +16,47 @@ plugins {
     id 'kotlin-multiplatform' version '1.3.31'
 }
 
+group 'com.meru'
+version '0.0.0'
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'maven-publish'
+apply plugin: 'kotlinx-serialization'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
 repositories {
+    google()
     jcenter()
     maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
     maven { url "https://kotlin.bintray.com/kotlinx" }
+    maven { url 'https://dl.bintray.com/kotlin/kotlin-js-wrappers' }
+    maven { url 'https://dl.bintray.com/kotlinx/kotlinx' }
+    maven { url "https://kotlin.bintray.com/kotlinx" }
+    maven { url "https://jitpack.io" }
     mavenCentral()
 }
-
-group 'com.asofttz'
-version '4.0.0'
-
-apply plugin: 'maven-publish'
-apply plugin: 'kotlinx-serialization'
 
 kotlin {
     jvm() {
@@ -32,7 +66,15 @@ kotlin {
             }
         }
     }
-    
+
+    android() {
+        compilations.all {
+            tasks[compileKotlinTaskName].kotlinOptions {
+                jvmTarget = "1.8"
+            }
+        }
+    }
+
     js() {
         compilations.all {
             tasks[compileKotlinTaskName].kotlinOptions {
@@ -58,6 +100,7 @@ kotlin {
                 implementation kotlin('test-annotations-common')
             }
         }
+        
         jvmMain {
             dependencies {
                 implementation kotlin('stdlib-jdk8')
@@ -65,7 +108,20 @@ kotlin {
                 implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1'
             }
         }
-        jvmTest {
+        
+        androidMain {
+            dependencies {
+                implementation kotlin('stdlib-jdk8')
+                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.11.0"
+                implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1'
+                implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1'
+
+                implementation 'com.google.firebase:firebase-core:17.0.0'
+                implementation "com.google.firebase:firebase-firestore:20.0.0"
+                implementation "com.google.firebase:firebase-storage:18.0.0"
+            }
+        }
+        androidTest {
             dependencies {
                 implementation kotlin('test')
                 implementation kotlin('test-junit')

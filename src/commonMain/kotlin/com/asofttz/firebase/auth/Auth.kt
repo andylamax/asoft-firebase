@@ -1,9 +1,9 @@
 package com.asofttz.firebase.auth
 
-import com.asofttz.firebase.app.App
+import com.asofttz.firebase.core.FirebaseApp
 
 expect class Auth {
-    val app: App
+    val app: FirebaseApp
     val currentUser: User
     fun signOut()
 }
