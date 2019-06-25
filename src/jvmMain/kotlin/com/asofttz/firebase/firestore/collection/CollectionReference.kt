@@ -29,7 +29,9 @@ actual suspend fun CollectionReference.forEachAsync(action: (QueryDocumentSnapsh
 }
 
 actual suspend inline fun CollectionReference.get(then: suspend (QuerySnapshot) -> Unit) {
+    TODO()
 }
 
 actual suspend inline fun <T> CollectionReference.add(data: T, serializer: KSerializer<T>, then: suspend (DocumentReference) -> Unit) {
+    TODO()
 }

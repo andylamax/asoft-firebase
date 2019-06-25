@@ -10,3 +10,10 @@ actual inline fun <T> DocumentSnapshot.toObject(serializer: KSerializer<T>): T? 
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 }
 
+actual fun DocumentSnapshot.get(fieldPath: String): Any? {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+}
+
+actual fun DocumentSnapshot.data(): Map<String, Any>? {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+}

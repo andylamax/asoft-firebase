@@ -4,8 +4,8 @@
     <facet type="kotlin-language" name="Kotlin">
       <configuration version="3" platform="JavaScript " useProjectSettings="false" isTestModule="true" externalProjectId=":asoft-firebase">
         <sourceSets>
-          <sourceSet>com.meru.asoft-firebase.jsMain</sourceSet>
           <sourceSet>com.meru.asoft-firebase.commonTest</sourceSet>
+          <sourceSet>com.meru.asoft-firebase.jsMain</sourceSet>
           <sourceSet>com.meru.asoft-firebase.commonMain</sourceSet>
         </sourceSets>
         <newMppModelJpsModuleKind>COMPILATION_AND_SOURCE_SET_HOLDER</newMppModelJpsModuleKind>
@@ -46,7 +46,7 @@
     <content url="file://$MODULE_DIR$/src/jsTest" />
     <orderEntry type="jdk" jdkName="Kotlin SDK" jdkType="KotlinSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="com.meru.asoft-firebase.jsMain" scope="TEST" />
+    <orderEntry type="module" module-name="com.meru.asoft-firebase.commonTest" scope="TEST" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-js:1.3.31" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-test-js:1.3.31" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-core-js:1.1.1" level="project" />
@@ -57,7 +57,7 @@
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:0.11.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.3.31" level="project" />
     <orderEntry type="module" module-name="com.meru.asoft-firebase.commonMain" scope="TEST" />
-    <orderEntry type="module" module-name="com.meru.asoft-firebase.commonTest" scope="TEST" />
+    <orderEntry type="module" module-name="com.meru.asoft-firebase.jsMain" scope="TEST" />
   </component>
   <component name="TestModuleProperties" production-module="com.meru.asoft-firebase.jsMain" />
 </module>

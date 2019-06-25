@@ -16,8 +16,8 @@ expect val CollectionReference.parent: DocumentReference?
 expect val CollectionReference.path: String
 expect fun CollectionReference.doc(documentPath: String? = null): DocumentReference
 
-expect suspend inline fun <T> CollectionReference.add(data: T, serializer: KSerializer<T>,then: suspend (DocumentReference)->Unit)
-expect suspend inline fun CollectionReference.get(then: suspend (QuerySnapshot)->Unit)
+expect suspend fun <T> CollectionReference.add(data: T, serializer: KSerializer<T>,then: suspend (DocumentReference)->Unit)
+expect suspend fun CollectionReference.get(then: suspend (QuerySnapshot)->Unit)
 
 @Deprecated("Use this only on platform specific")
 expect suspend fun CollectionReference.forEachAsync(action: (QueryDocumentSnapshot) -> Unit)

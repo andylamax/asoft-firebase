@@ -31,7 +31,7 @@ actual fun CollectionReference.doc(documentPath: String?): DocumentReference {
     }
 }
 
-actual suspend inline fun CollectionReference.get(then: suspend (QuerySnapshot) -> Unit) {
+actual suspend fun CollectionReference.get(then: suspend (QuerySnapshot) -> Unit) {
     then(get().await())
 }
 
@@ -39,6 +39,6 @@ actual suspend fun CollectionReference.forEachAsync(action: (QueryDocumentSnapsh
     get().await().forEach(action)
 }
 
-actual suspend inline fun <T> CollectionReference.add(data: T, serializer: KSerializer<T>, then: suspend (DocumentReference) -> Unit) {
+actual suspend fun <T> CollectionReference.add(data: T, serializer: KSerializer<T>, then: suspend (DocumentReference) -> Unit) {
     then(add(data as Any).await())
 }

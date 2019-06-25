@@ -56,7 +56,7 @@ actual suspend fun CollectionReference.forEachAsync(action: (QueryDocumentSnapsh
     get().await().forEach(action)
 }
 
-actual suspend inline fun <T> CollectionReference.add(data: T, serializer: KSerializer<T>, then: suspend (DocumentReference) -> Unit) {
+actual suspend fun <T> CollectionReference.add(data: T, serializer: KSerializer<T>, then: suspend (DocumentReference) -> Unit) {
     val json = Json.stringify(serializer, data)
     then(add(JSON.parse(json)).await())
 }

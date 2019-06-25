@@ -5,7 +5,8 @@ import kotlinx.serialization.json.Json
 
 actual open external class DocumentSnapshot {
     val id: String
-    fun data(): Any?
+    fun data(): Map<String,Any>?
+    fun get(fieldPath: String) : Any?
 }
 
 actual inline fun <reified T> DocumentSnapshot.toObject(serializer: KSerializer<T>): T? {
@@ -13,3 +14,6 @@ actual inline fun <reified T> DocumentSnapshot.toObject(serializer: KSerializer<
     val json = JSON.stringify(obj)
     return Json.parse(serializer,json)
 }
+
+actual fun DocumentSnapshot.get(fieldPath: String): Any? = get(fieldPath)
+actual fun DocumentSnapshot.data(): Map<String, Any>? = data()

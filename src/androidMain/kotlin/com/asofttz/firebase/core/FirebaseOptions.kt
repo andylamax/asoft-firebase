@@ -3,90 +3,76 @@ package com.asofttz.firebase.core
 actual typealias FirebaseOptions = com.google.firebase.FirebaseOptions
 
 actual var FirebaseOptions.apiKey: String
-    set(value) {
-        throw Throwable("Use FirebaseOptionsBuilder")
-    }
+    set(_) {}
     get() = apiKey
 
 actual var FirebaseOptions.authDomain: String
-    set(value) {
-        throw Throwable("Use FirebaseOptionsBuilder")
-    }
+    set(_) {}
     get() = ""
 
 actual var FirebaseOptions.databaseUrl: String
-    set(value) {
-        throw Throwable("Use FirebaseOptionsBuilder")
-    }
+    set(_) {}
     get() = databaseUrl
 
 actual var FirebaseOptions.projectId: String
-    set(value) {
-        throw Throwable("Use FirebaseOptionsBuilder")
-    }
+    set(_) {}
     get() = projectId
 
 actual var FirebaseOptions.storageBucket: String
-    set(value) {
-        throw Throwable("Use FirebaseOptionsBuilder")
-    }
+    set(_) {}
     get() = storageBucket
 
 actual var FirebaseOptions.messagingSenderId: String
-    set(value) {
-        throw Throwable("Use FirebaseOptionsBuilder")
-    }
+    set(_) {}
     get() = gcmSenderId
 
 actual var FirebaseOptions.appId: String
-    set(value) {
-        throw Throwable("Use FirebaseOptionsBuilder")
-    }
+    set(_) {}
     get() = applicationId
 
 
-actual typealias FirebaseOptionsBuilder  = com.google.firebase.FirebaseOptions.Builder
+actual typealias FirebaseOptionsBuilder = com.google.firebase.FirebaseOptions.Builder
 
 actual var FirebaseOptionsBuilder.apiKey: String
     set(value) {
         setApiKey(value)
     }
-    get() = throw Throwable("Use FirebaseOptionsBuilder.Builder")
+    get() = ""
 
 actual var FirebaseOptionsBuilder.authDomain: String
     set(value) {
 
     }
-    get() = throw Throwable("Use FirebaseOptionsBuilder.Builder")
+    get() = ""
 
 actual var FirebaseOptionsBuilder.databaseUrl: String
     set(value) {
         setDatabaseUrl(value)
     }
-    get() = throw Throwable("Use FirebaseOptionsBuilder.Builder")
+    get() = ""
 
 actual var FirebaseOptionsBuilder.projectId: String
     set(value) {
         setProjectId(value)
     }
-    get() = throw Throwable("Use FirebaseOptionsBuilder.Builder")
+    get() = ""
 
 actual var FirebaseOptionsBuilder.storageBucket: String
     set(value) {
-        setStorageBucket(storageBucket)
+        setStorageBucket(value)
     }
-    get() = throw Throwable("Use FirebaseOptionsBuilder.Builder")
+    get() = ""
 
 actual var FirebaseOptionsBuilder.messagingSenderId: String
     set(value) {
         setGcmSenderId(value)
     }
-    get() = throw Throwable("Use FirebaseOptionsBuilder.Builder")
+    get() = ""
 
 actual var FirebaseOptionsBuilder.appId: String
     set(value) {
-        setApplicationId(appId)
+        setApplicationId(value)
     }
-    get() = throw Throwable("Use FirebaseOptionsBuilder.Builder")
+    get() = ""
 
 actual fun FirebaseOptionsBuilder.build(): FirebaseOptions = build()
