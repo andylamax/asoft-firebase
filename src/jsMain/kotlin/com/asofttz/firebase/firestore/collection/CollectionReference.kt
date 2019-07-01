@@ -3,6 +3,7 @@ package com.asofttz.firebase.firestore.collection
 import com.asofttz.firebase.firestore.FirebaseFirestore
 import com.asofttz.firebase.firestore.document.DocumentReference
 import com.asofttz.firebase.firestore.document.Object
+import com.asofttz.firebase.firestore.query.Query
 import com.asofttz.firebase.firestore.snapshot.QueryDocumentSnapshot
 import com.asofttz.firebase.firestore.snapshot.QuerySnapshot
 import kotlinx.coroutines.await
@@ -14,7 +15,7 @@ import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 import kotlin.js.*
 
-actual external class CollectionReference {
+actual external class CollectionReference : Query {
     val firestore: FirebaseFirestore
     val id: String
     val parent: DocumentReference?
@@ -23,7 +24,7 @@ actual external class CollectionReference {
     @JsName("doc")
     fun doc(path: String? = definedExternally): DocumentReference
 
-    fun get(): Promise<QuerySnapshot>
+//    fun get(): Promise<QuerySnapshot>
 
     fun add(obj: Any): Promise<DocumentReference>
 }
@@ -48,15 +49,11 @@ actual fun CollectionReference.doc(documentPath: String?): DocumentReference {
     }
 }
 
-actual suspend inline fun CollectionReference.get(then: suspend (QuerySnapshot) -> Unit) {
-    then(get().await())
-}
-
 actual suspend fun CollectionReference.forEachAsync(action: (QueryDocumentSnapshot) -> Unit) {
     get().await().forEach(action)
 }
 
-actual suspend fun <T> CollectionReference.add(data: T, serializer: KSerializer<T>, then: suspend (DocumentReference) -> Unit) {
-    val json = Json.stringify(serializer, data)
+actual suspend inline fun <T> CollectionReference.add(data: T, serializer: KSerializer<T>, then: suspend (DocumentReference) -> Unit) {
+    val json = Json.nonstrict.stringify(serializer, data)
     then(add(JSON.parse(json)).await())
 }

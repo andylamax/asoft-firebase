@@ -17,3 +17,6 @@ actual fun DocumentSnapshot.get(fieldPath: String): Any? {
 actual fun DocumentSnapshot.data(): Map<String, Any>? {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 }
+
+actual val DocumentSnapshot.id: String
+    get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.

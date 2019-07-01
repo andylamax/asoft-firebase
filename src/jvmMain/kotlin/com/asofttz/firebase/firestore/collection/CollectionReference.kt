@@ -7,7 +7,7 @@ import com.asofttz.firebase.firestore.snapshot.QueryDocumentSnapshot
 import com.asofttz.firebase.firestore.snapshot.QuerySnapshot
 import kotlinx.serialization.KSerializer
 
-actual class CollectionReference
+actual class CollectionReference : Query()
 
 actual val CollectionReference.firestore: FirebaseFirestore
     get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
@@ -26,10 +26,6 @@ actual val CollectionReference.path: String
 
 actual suspend fun CollectionReference.forEachAsync(action: (QueryDocumentSnapshot)->Unit) {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-}
-
-actual suspend inline fun CollectionReference.get(then: suspend (QuerySnapshot) -> Unit) {
-    TODO()
 }
 
 actual suspend inline fun <T> CollectionReference.add(data: T, serializer: KSerializer<T>, then: suspend (DocumentReference) -> Unit) {

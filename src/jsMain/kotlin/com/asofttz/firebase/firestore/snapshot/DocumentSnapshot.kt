@@ -12,8 +12,10 @@ actual open external class DocumentSnapshot {
 actual inline fun <reified T> DocumentSnapshot.toObject(serializer: KSerializer<T>): T? {
     val obj = data().unsafeCast<T>() ?: return null
     val json = JSON.stringify(obj)
-    return Json.parse(serializer,json)
+    return Json.nonstrict.parse(serializer,json)
 }
 
 actual fun DocumentSnapshot.get(fieldPath: String): Any? = get(fieldPath)
 actual fun DocumentSnapshot.data(): Map<String, Any>? = data()
+actual val DocumentSnapshot.id: String
+    get() = id

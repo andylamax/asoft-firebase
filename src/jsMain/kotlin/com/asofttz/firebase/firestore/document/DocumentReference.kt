@@ -5,6 +5,8 @@ import com.asofttz.firebase.firestore.FirebaseFirestore
 import com.asofttz.firebase.firestore.collection.CollectionReference
 import kotlinx.coroutines.await
 import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.json.Json
 import kotlin.coroutines.resume
 import kotlin.js.Promise
 
@@ -24,7 +26,7 @@ actual val DocumentReference.Firestore: FirebaseFirestore
 actual inline val DocumentReference.id: String
     get() = id
 
-actual fun DocumentReference.col(path: String): CollectionReference = collection(path)
+actual fun DocumentReference.collection(path: String): CollectionReference = collection(path)
 
 external object Object {
     fun <T> assign(target: T, sources: Any): T
@@ -34,7 +36,8 @@ actual suspend fun DocumentReference.get(then: suspend (DocumentSnapshot) -> Uni
     then(get().await())
 }
 
-actual suspend fun DocumentReference.set(data: Any, then: suspend ()->Unit){
-    set(data).await()
+actual suspend fun <T> DocumentReference.set(data: T, serializer: KSerializer<T>, then: suspend ()->Unit){
+    val obj = JSON.parse<Any>(Json.stringify(serializer,data))
+    set(obj).await()
     then()
 }

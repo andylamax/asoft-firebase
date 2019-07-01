@@ -7,7 +7,12 @@ import kotlin.js.Promise
 actual open external class Query {
     open fun get(): Promise<QuerySnapshot>
     fun where(field: String, opStr: String, value: Any): Query
-    actual fun limit(limit: Long): Query
+    fun limit(limit: Number): Query
 }
 
-actual suspend fun Query.get(): QuerySnapshot = get().await().unsafeCast<QuerySnapshot>()
+actual suspend fun Query.get(then: suspend (QuerySnapshot) -> Unit) {
+    then(get().await())
+}
+
+actual fun Query.where(fieldPath: String, operator: String, value: Any): Query = where(fieldPath, operator, value)
+actual fun Query.limit(limit: Long): Query = limit(limit.toInt())
