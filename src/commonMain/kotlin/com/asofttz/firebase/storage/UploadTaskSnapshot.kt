@@ -2,14 +2,10 @@ package com.asofttz.firebase.storage
 
 import kotlin.math.round
 
-expect class UploadTaskSnapshot {
-    val bytesTransferred: Number
-    val downloadURL: String?
-    //    val metadata
-    val ref: Reference
-    //    state
-    val task: UploadTask
-    val totalBytes: Number
-}
+abstract class UploadTaskSnapshot {
+    abstract val bytesTransferred: Long
+    abstract val downloadURL: String?
+    abstract val totalBytes: Long
 
-val UploadTaskSnapshot.pct get() = round(10000 * "$bytesTransferred".toDouble() / "$totalBytes".toDouble()) / 100
+    val pct get() = round(10000 * bytesTransferred.toDouble() / totalBytes) / 100
+}

@@ -1,9 +1,15 @@
 package com.asofttz.firebase.storage
 
-actual external class UploadTaskSnapshot {
-    actual val bytesTransferred: Number
-    actual val downloadURL: String?
-    actual val ref: Reference
-    actual val task: UploadTask
-    actual val totalBytes: Number
+external class TaskSnapshot {
+    val bytesTransferred: Number
+    val downloadURL: String?
+    val ref: StorageReference
+    val task: UploadTask
+    val totalBytes: Number
+}
+
+class JSTaskSnapshot(private val snapshot: TaskSnapshot) : UploadTaskSnapshot() {
+    override val bytesTransferred get() = "${snapshot.bytesTransferred}".toLong()
+    override val downloadURL get() = snapshot.toString()
+    override val totalBytes get() = "${snapshot.totalBytes}".toLong()
 }

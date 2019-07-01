@@ -1,14 +1,9 @@
 package com.asofttz.firebase.storage
 
-actual class UploadTaskSnapshot {
-    actual val bytesTransferred: Number
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
-    actual val downloadURL: String?
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
-    actual val ref: Reference
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
-    actual val task: UploadTask
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
-    actual val totalBytes: Number
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+import com.google.firebase.storage.UploadTask
+
+class AndroidUploadTaskSnapshot(private val snapshot: UploadTask.TaskSnapshot) : UploadTaskSnapshot() {
+    override val bytesTransferred get() = snapshot.bytesTransferred
+    override val downloadURL = snapshot.toString()
+    override val totalBytes get() = snapshot.totalByteCount
 }

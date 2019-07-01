@@ -5,7 +5,7 @@ actual class UploadTaskSnapshot {
         get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
     actual val downloadURL: String?
         get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
-    actual val ref: Reference
+    actual val ref: StorageReference
         get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
     actual val task: UploadTask
         get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
