@@ -4,9 +4,9 @@
     <facet type="kotlin-language" name="Kotlin">
       <configuration version="3" platform="JavaScript " useProjectSettings="false" isTestModule="true" externalProjectId=":asoft-firebase">
         <sourceSets>
-          <sourceSet>com.asofttz.asoft-firebase.commonTest</sourceSet>
           <sourceSet>com.asofttz.asoft-firebase.commonMain</sourceSet>
           <sourceSet>com.asofttz.asoft-firebase.jsMain</sourceSet>
+          <sourceSet>com.asofttz.asoft-firebase.commonTest</sourceSet>
         </sourceSets>
         <newMppModelJpsModuleKind>COMPILATION_AND_SOURCE_SET_HOLDER</newMppModelJpsModuleKind>
         <compilerSettings />
@@ -46,7 +46,7 @@
     <content url="file://$MODULE_DIR$/src/jsTest" />
     <orderEntry type="jdk" jdkName="Kotlin SDK" jdkType="KotlinSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="com.asofttz.asoft-firebase.commonTest" scope="TEST" />
+    <orderEntry type="module" module-name="com.asofttz.asoft-firebase.commonMain" scope="TEST" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.31" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.3.31" level="project" />
@@ -65,8 +65,8 @@
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.1.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:0.11.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.3.31" level="project" />
+    <orderEntry type="module" module-name="com.asofttz.asoft-firebase.commonTest" scope="TEST" />
     <orderEntry type="module" module-name="com.asofttz.asoft-firebase.jsMain" scope="TEST" />
-    <orderEntry type="module" module-name="com.asofttz.asoft-firebase.commonMain" scope="TEST" />
   </component>
   <component name="TestModuleProperties" production-module="com.asofttz.asoft-firebase.jsMain" />
 </module>
