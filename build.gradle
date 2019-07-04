@@ -59,15 +59,7 @@ repositories {
 }
 
 kotlin {
-    jvm() {
-        compilations.all {
-            tasks[compileKotlinTaskName].kotlinOptions {
-                jvmTarget = "1.8"
-            }
-        }
-    }
-
-    android() {
+    android("android") {
         compilations.all {
             tasks[compileKotlinTaskName].kotlinOptions {
                 jvmTarget = "1.8"
@@ -95,14 +87,8 @@ kotlin {
                 implementation "com.github.andylamax:asoft-date:1.0.4"
             }
         }
-        commonTest {
-            dependencies {
-                implementation kotlin('test-common')
-                implementation kotlin('test-annotations-common')
-            }
-        }
         
-        jvmMain {
+        jvmCommonMain {
             dependencies {
                 implementation kotlin('stdlib-jdk8')
                 implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.11.0"
@@ -111,36 +97,23 @@ kotlin {
         }
         
         androidMain {
+            dependsOn jvmCommonMain
             dependencies {
-                implementation kotlin('stdlib-jdk8')
-                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.11.0"
-                implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1'
                 implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1'
 
                 implementation 'com.google.code.gson:gson:2.8.5'
                 api 'com.google.firebase:firebase-core:17.0.0'
                 api "com.google.firebase:firebase-firestore:20.0.0"
+                api "com.google.firebase:firebase-auth:18.0.0"
                 api "com.google.firebase:firebase-storage:18.0.0"
             }
         }
-        androidTest {
-            dependsOn commonMain
-            dependsOn androidMain
-            dependencies {
-                implementation kotlin('test')
-                implementation kotlin('test-junit')
-            }
-        }
+        
         jsMain {
             dependencies {
-                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:0.11.0"
                 implementation kotlin('stdlib-js')
+                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:0.11.0"
                 implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core-js:1.1.1'
-            }
-        }
-        jsTest {
-            dependencies {
-                implementation kotlin('test-js')
             }
         }
     }
