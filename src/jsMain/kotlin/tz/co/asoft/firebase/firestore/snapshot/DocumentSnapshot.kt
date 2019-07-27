@@ -9,7 +9,7 @@ actual open external class DocumentSnapshot {
     fun get(fieldPath: String) : Any?
 }
 
-actual inline fun <reified T> DocumentSnapshot.toObject(serializer: KSerializer<T>): T? {
+actual fun <T> DocumentSnapshot.toObject(serializer: KSerializer<T>): T? {
     val obj = data().unsafeCast<T>() ?: return null
     val json = JSON.stringify(obj)
     return Json.nonstrict.parse(serializer,json)

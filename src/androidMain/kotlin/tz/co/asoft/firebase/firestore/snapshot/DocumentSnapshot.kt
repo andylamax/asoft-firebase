@@ -6,7 +6,7 @@ import kotlinx.serialization.json.Json
 
 actual typealias DocumentSnapshot = com.google.firebase.firestore.DocumentSnapshot
 
-actual inline fun <reified T> DocumentSnapshot.toObject(serializer: KSerializer<T>): T? {
+actual fun <T> DocumentSnapshot.toObject(serializer: KSerializer<T>): T? {
     return Json.nonstrict.parse(serializer, Gson().toJson(data))
 }
 
