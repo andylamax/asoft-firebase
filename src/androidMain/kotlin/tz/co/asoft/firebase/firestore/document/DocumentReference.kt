@@ -1,5 +1,8 @@
+@file:JvmName("DocumentReference")
+
 package tz.co.asoft.firebase.firestore.document
 
+import android.util.Log
 import tz.co.asoft.firebase.firestore.FirebaseFirestore
 import tz.co.asoft.firebase.firestore.collection.CollectionReference
 import tz.co.asoft.firebase.firestore.snapshot.DocumentSnapshot
