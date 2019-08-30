@@ -9,6 +9,8 @@ buildscript {
         firebase_firestore_version = "20.0.0"
         firebase_auth_version = "18.0.0"
         firebase_storage_version = "18.0.0"
+        
+        firebase_admin_version = "6.9.0"
     }
     
     repositories {
@@ -24,7 +26,7 @@ buildscript {
 }
 
 plugins {
-    id 'kotlin-multiplatform' version '1.3.41'
+    id 'kotlin-multiplatform' version '1.3.50'
 }
 
 group 'tz.co.asoft'
@@ -69,7 +71,15 @@ repositories {
 }
 
 kotlin {
-    android("android") {
+    jvm() {
+        compilations.all {
+            tasks[compileKotlinTaskName].kotlinOptions {
+                jvmTarget = "1.8"
+            }
+        }
+    }
+    
+    android() {
         compilations.all {
             tasks[compileKotlinTaskName].kotlinOptions {
                 jvmTarget = "1.8"
@@ -97,19 +107,20 @@ kotlin {
             }
         }
 
-        jvmCommonMain {
+        jvmMain {
             dependencies {
                 implementation kotlin('stdlib-jdk8')
-                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version"
-                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+                api "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version"
+                api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+                api "com.google.firebase:firebase-admin:$firebase_admin_version"
             }
         }
 
         androidMain {
-            dependsOn jvmCommonMain
             dependencies {
-                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
-                
+                implementation kotlin('stdlib-jdk8')
+                api "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version"
+                api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
                 api "com.google.firebase:firebase-core:$firebase_core_version"
                 api "com.google.firebase:firebase-firestore:$firebase_firestore_version"
                 api "com.google.firebase:firebase-auth:$firebase_auth_version"
@@ -120,8 +131,8 @@ kotlin {
         jsMain {
             dependencies {
                 implementation kotlin('stdlib-js')
-                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:$serialization_version"
-                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutines_version"
+                api "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:$serialization_version"
+                api "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutines_version"
 
                 implementation(npm("firebase", firebase_js_version))
             }
