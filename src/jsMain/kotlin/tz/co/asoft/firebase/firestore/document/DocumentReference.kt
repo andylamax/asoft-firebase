@@ -21,7 +21,7 @@ actual val DocumentReference.Firestore: FirebaseFirestore
     get() = firestore
 
 
-actual inline val DocumentReference.id: String
+actual val DocumentReference.id: String
     get() = id
 
 actual fun DocumentReference.collection(path: String): CollectionReference = collection(path)

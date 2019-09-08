@@ -20,8 +20,8 @@ actual suspend fun DocumentReference.get(then: suspend (DocumentSnapshot) -> Uni
 }
 
 actual suspend fun <T> DocumentReference.set(
-    data: T,
-    serializer: KSerializer<T>,
-    then: suspend () -> Unit
+        data: T,
+        serializer: KSerializer<T>,
+        then: suspend () -> Unit
 ) {
 }

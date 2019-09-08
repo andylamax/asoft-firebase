@@ -2,19 +2,18 @@
 
 package tz.co.asoft.firebase.firestore.document
 
-import android.util.Log
+import kotlinx.serialization.KSerializer
 import tz.co.asoft.firebase.firestore.FirebaseFirestore
 import tz.co.asoft.firebase.firestore.collection.CollectionReference
 import tz.co.asoft.firebase.firestore.snapshot.DocumentSnapshot
 import tz.co.asoft.firebase.firestore.tools.await
-import kotlinx.serialization.KSerializer
 
 actual typealias DocumentReference = com.google.firebase.firestore.DocumentReference
 
 actual val DocumentReference.Firestore: FirebaseFirestore
     get() = firestore
 
-actual inline val DocumentReference.id: String
+actual val DocumentReference.id: String
     get() = id
 
 actual suspend fun DocumentReference.get(then: suspend (DocumentSnapshot) -> Unit) {
