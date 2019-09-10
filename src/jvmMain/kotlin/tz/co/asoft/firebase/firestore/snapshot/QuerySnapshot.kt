@@ -1,3 +1,5 @@
+@file:JvmName("QuerySnapshotAndroid")
+
 package tz.co.asoft.firebase.firestore.snapshot
 
 actual class QuerySnapshot
