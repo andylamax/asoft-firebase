@@ -35,3 +35,6 @@ actual suspend fun <T : Any> DocumentReference.put(
     serializer: KSerializer<T>
 ) {
 }
+
+actual fun DocumentReference.addListener(listener: (DocumentSnapshot) -> Unit) {
+}

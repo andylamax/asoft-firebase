@@ -6,6 +6,7 @@ import tz.co.asoft.firebase.firestore.collection.CollectionReference
 import kotlinx.coroutines.await
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.Json
+import tz.co.asoft.firebase.firestore.event.Listener
 import kotlin.js.Promise
 
 actual external class DocumentReference {
@@ -15,6 +16,7 @@ actual external class DocumentReference {
     fun get(): Promise<DocumentSnapshot>
     fun set(obj: Any): Promise<Unit>
     fun update(data: Any): Promise<Unit>
+    fun onSnapshot(l: Listener<DocumentSnapshot>)
 }
 
 actual val DocumentReference.firestore: FirebaseFirestore
@@ -41,4 +43,11 @@ actual suspend fun DocumentReference.fetch(): DocumentSnapshot = get().await()
 actual suspend fun <T : Any> DocumentReference.put(data: T, serializer: KSerializer<T>) {
     val obj = JSON.parse<Any>(Json.stringify(serializer, data))
     set(obj).await()
+}
+
+actual fun DocumentReference.addListener(listener: (DocumentSnapshot) -> Unit) {
+    onSnapshot(Listener(
+        next = { listener(it) },
+        error = {}
+    ))
 }

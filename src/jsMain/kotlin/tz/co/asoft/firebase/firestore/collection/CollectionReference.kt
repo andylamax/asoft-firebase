@@ -1,13 +1,15 @@
 package tz.co.asoft.firebase.firestore.collection
 
-import tz.co.asoft.firebase.firestore.FirebaseFirestore
-import tz.co.asoft.firebase.firestore.document.DocumentReference
-import tz.co.asoft.firebase.firestore.query.Query
-import tz.co.asoft.firebase.firestore.snapshot.QueryDocumentSnapshot
 import kotlinx.coroutines.await
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.Json
-import kotlin.js.*
+import tz.co.asoft.firebase.firestore.FirebaseFirestore
+import tz.co.asoft.firebase.firestore.document.DocumentReference
+import tz.co.asoft.firebase.firestore.event.Listener
+import tz.co.asoft.firebase.firestore.query.Query
+import tz.co.asoft.firebase.firestore.snapshot.QueryDocumentSnapshot
+import tz.co.asoft.firebase.firestore.snapshot.QuerySnapshot
+import kotlin.js.Promise
 
 actual external class CollectionReference : Query {
     val firestore: FirebaseFirestore
@@ -19,6 +21,8 @@ actual external class CollectionReference : Query {
     fun doc(path: String? = definedExternally): DocumentReference
 
     fun add(obj: Any): Promise<DocumentReference>
+
+    fun onSnapshot(l: Listener<QuerySnapshot>)
 }
 
 actual val CollectionReference.firestore: FirebaseFirestore
@@ -60,4 +64,13 @@ actual suspend fun <T : Any> CollectionReference.put(
 ): DocumentReference {
     val json = Json.nonstrict.stringify(serializer, data)
     return add(JSON.parse(json)).await()
+}
+
+actual fun CollectionReference.addListener(listener: (QuerySnapshot) -> Unit) {
+    onSnapshot(
+        Listener(
+            next = { listener(it) },
+            error = {}
+        )
+    )
 }

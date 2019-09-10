@@ -5,6 +5,7 @@ import tz.co.asoft.firebase.firestore.FirebaseFirestore
 import tz.co.asoft.firebase.firestore.document.DocumentReference
 import tz.co.asoft.firebase.firestore.query.Query
 import tz.co.asoft.firebase.firestore.snapshot.QueryDocumentSnapshot
+import tz.co.asoft.firebase.firestore.snapshot.QuerySnapshot
 
 actual class CollectionReference : Query()
 
@@ -36,4 +37,7 @@ actual suspend fun <T : Any> CollectionReference.put(
     serializer: KSerializer<T>
 ): DocumentReference {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+}
+
+actual fun CollectionReference.addListener(listener: (QuerySnapshot) -> Unit) {
 }

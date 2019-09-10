@@ -19,3 +19,5 @@ expect suspend fun <T> DocumentReference.set(data: T, serializer: KSerializer<T>
 expect suspend fun <T : Any> DocumentReference.put(data: T, serializer: KSerializer<T>)
 
 expect suspend fun DocumentReference.fetch(): DocumentSnapshot
+
+expect fun DocumentReference.addListener(listener: (DocumentSnapshot) -> Unit)

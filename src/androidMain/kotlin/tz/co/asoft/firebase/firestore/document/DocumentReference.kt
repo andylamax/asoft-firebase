@@ -2,6 +2,7 @@
 
 package tz.co.asoft.firebase.firestore.document
 
+import com.google.firebase.firestore.EventListener
 import kotlinx.serialization.KSerializer
 import tz.co.asoft.firebase.firestore.FirebaseFirestore
 import tz.co.asoft.firebase.firestore.collection.CollectionReference
@@ -31,4 +32,10 @@ actual suspend fun DocumentReference.fetch(): DocumentSnapshot = get().await()
 
 actual suspend fun <T : Any> DocumentReference.put(data: T, serializer: KSerializer<T>) {
     set(data).await()
+}
+
+actual fun DocumentReference.addListener(listener: (DocumentSnapshot) -> Unit) {
+    addSnapshotListener { doc, exp ->
+        doc?.let { listener(it) }
+    }
 }
