@@ -33,15 +33,15 @@ import tz.co.asoft.persist.tools.Singleton
 import tz.co.asoft.rx.observers.ObservableList
 
 class AuthFirebaseDao private constructor(
-    val firebase: FirebaseApp,
-    override val serializer: KSerializer<User>
+        val firebase: FirebaseApp,
+        override val serializer: KSerializer<User>
 ) : AuthFirebaseAbstractDao(firebase.firestore(), "users", serializer) {
 
     companion object {
         private var instance: AuthFirebaseAbstractDao? = null
         fun getInstance(
-            firebase: FirebaseApp,
-            serializer: KSerializer<User>
+                firebase: FirebaseApp,
+                serializer: KSerializer<User>
         ): AuthFirebaseAbstractDao = instance ?: AuthFirebaseDao(firebase, serializer).also {
             instance = it
         }
@@ -50,7 +50,14 @@ class AuthFirebaseDao private constructor(
     val app by lazy { firebase }
 
     override suspend fun create(list: List<User>): List<User>? {
-        list.forEach { it.password = SHA256.digest(it.password.toUtf8Bytes()).hex }
+        list.forEach {
+            val auth = app.auth()
+            val res = auth.makeUserWithEmailAndPassword(it.emails[0], it.password).user
+                    ?: throw Cause("Couldn't create an account for you. Try again")
+            it.uid = res.uid
+            auth.logout()
+            it.password = SHA256.digest(it.password.toUtf8Bytes()).hex
+        }
         return super.create(list)
     }
 

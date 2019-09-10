@@ -24,3 +24,13 @@ actual suspend fun FirebaseAuth.signOut() {
 }
 
 actual fun FirebaseApp.auth(): FirebaseAuth = FirebaseAuth.getInstance(this)
+
+actual suspend fun FirebaseAuth.makeUserWithEmailAndPassword(email: String, password: String): AuthResult {
+    return createUserWithEmailAndPassword(email, password).await()
+}
+
+actual suspend fun FirebaseAuth.loginUserWithEmailAndPassword(email: String, password: String): AuthResult {
+    return signInWithEmailAndPassword(email, password).await()
+}
+
+actual suspend fun FirebaseAuth.logout() = signOut()
