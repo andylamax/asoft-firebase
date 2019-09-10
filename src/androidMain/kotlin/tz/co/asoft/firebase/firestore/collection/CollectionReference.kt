@@ -32,6 +32,12 @@ actual suspend fun CollectionReference.forEachAsync(action: (QueryDocumentSnapsh
     get().await().forEach(action)
 }
 
-actual suspend fun <T> CollectionReference.add(data: T, serializer: KSerializer<T>, then: suspend (DocumentReference) -> Unit) {
+actual suspend fun <T> CollectionReference.add(
+    data: T,
+    serializer: KSerializer<T>,
+    then: suspend (DocumentReference) -> Unit
+) {
     then(add(data as Any).await())
 }
+
+actual suspend fun <T : Any> CollectionReference.put(data: T, serializer: KSerializer<T>) = add(data).await()

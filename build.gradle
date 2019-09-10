@@ -3,6 +3,7 @@ buildscript {
         kotlin_version = '1.3.50'
         serialization_version = "0.12.0"
         firebase_js_version = "5.11.1"
+        persist_version = "3.2.2"
         coroutines_version = "1.3.0"
 
         firebase_core_version = "17.0.0"
@@ -107,8 +108,9 @@ kotlin {
         commonMain {
             dependencies {
                 implementation kotlin('stdlib-common')
-                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$serialization_version"
-                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$coroutines_version"
+                api "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$serialization_version"
+                api "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$coroutines_version"
+                api "com.github.andylamax.asoft-persist:asoft-persist-metadata:$persist_version" 
             }
         }
 
@@ -117,7 +119,7 @@ kotlin {
                 implementation kotlin('stdlib-jdk8')
                 api "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version"
                 api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
-                api "com.google.firebase:firebase-admin:$firebase_admin_version"
+                api "com.github.andylamax.asoft-persist:asoft-persist-jvm:$persist_version"
             }
         }
 
@@ -130,6 +132,7 @@ kotlin {
                 api "com.google.firebase:firebase-firestore:$firebase_firestore_version"
                 api "com.google.firebase:firebase-auth:$firebase_auth_version"
                 api "com.google.firebase:firebase-storage:$firebase_storage_version"
+                api "com.github.andylamax.asoft-persist:asoft-persist-android:$persist_version"
             }
         }
 
@@ -138,7 +141,7 @@ kotlin {
                 implementation kotlin('stdlib-js')
                 api "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:$serialization_version"
                 api "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutines_version"
-
+                api "com.github.andylamax.asoft-persist:asoft-persist-js:$persist_version"
                 implementation(npm("firebase", firebase_js_version))
             }
         }

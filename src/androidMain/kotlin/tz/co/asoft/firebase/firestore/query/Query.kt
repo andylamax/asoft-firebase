@@ -5,6 +5,8 @@ import tz.co.asoft.firebase.firestore.tools.await
 
 actual typealias Query = com.google.firebase.firestore.Query
 
+actual suspend fun Query.fetch(): QuerySnapshot = get().await()
+
 actual suspend fun Query.get(then: suspend (QuerySnapshot) -> Unit) {
     then(get().await())
 }
@@ -16,6 +18,6 @@ actual fun Query.where(fieldPath: String, operator: String, value: Any): Query =
     "==" -> whereEqualTo(fieldPath, value)
     ">=" -> whereGreaterThanOrEqualTo(fieldPath, value)
     ">" -> whereGreaterThan(fieldPath, value)
-    "array-contains" -> whereArrayContains(fieldPath,value)
+    "array-contains" -> whereArrayContains(fieldPath, value)
     else -> this
 }

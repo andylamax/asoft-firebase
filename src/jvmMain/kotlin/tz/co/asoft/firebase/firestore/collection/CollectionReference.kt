@@ -30,3 +30,10 @@ actual suspend fun <T> CollectionReference.add(
 
 actual suspend fun CollectionReference.forEachAsync(action: (QueryDocumentSnapshot) -> Unit) {
 }
+
+actual suspend fun <T : Any> CollectionReference.put(
+    data: T,
+    serializer: KSerializer<T>
+): DocumentReference {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+}

@@ -18,3 +18,5 @@ actual fun Query.limit(limit: Long): Query {
 
 actual suspend fun Query.get(then: suspend (QuerySnapshot) -> Unit) {
 }
+
+actual suspend fun Query.fetch(): QuerySnapshot = TODO()

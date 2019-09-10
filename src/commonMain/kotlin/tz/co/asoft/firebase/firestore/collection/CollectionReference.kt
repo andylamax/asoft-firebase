@@ -14,7 +14,14 @@ expect val CollectionReference.parent: DocumentReference?
 expect val CollectionReference.path: String
 expect fun CollectionReference.doc(documentPath: String? = null): DocumentReference
 
-expect suspend fun <T> CollectionReference.add(data: T, serializer: KSerializer<T>,then: suspend (DocumentReference)->Unit)
+@Deprecated("Use put")
+expect suspend fun <T> CollectionReference.add(
+    data: T,
+    serializer: KSerializer<T>,
+    then: suspend (DocumentReference) -> Unit
+)
+
+expect suspend fun <T: Any> CollectionReference.put(data: T, serializer: KSerializer<T>): DocumentReference
 
 @Deprecated("Use this only on platform specific")
 expect suspend fun CollectionReference.forEachAsync(action: (QueryDocumentSnapshot) -> Unit)

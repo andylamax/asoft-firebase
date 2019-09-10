@@ -8,4 +8,7 @@ expect fun Query.where(fieldPath: String, operator: String, value: Any): Query
 
 expect fun Query.limit(limit: Long): Query
 
-expect suspend fun Query.get(then: suspend (QuerySnapshot) -> Unit = {})
+@Deprecated("Use fetch")
+expect suspend fun Query.get(then: suspend (QuerySnapshot) -> Unit)
+
+expect suspend fun Query.fetch(): QuerySnapshot

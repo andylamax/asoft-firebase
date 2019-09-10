@@ -17,7 +17,7 @@ actual external class DocumentReference {
     fun update(data: Any): Promise<Unit>
 }
 
-actual val DocumentReference.Firestore: FirebaseFirestore
+actual val DocumentReference.firestore: FirebaseFirestore
     get() = firestore
 
 
@@ -30,8 +30,15 @@ actual suspend fun DocumentReference.get(then: suspend (DocumentSnapshot) -> Uni
     then(get().await())
 }
 
-actual suspend fun <T> DocumentReference.set(data: T, serializer: KSerializer<T>, then: suspend ()->Unit){
-    val obj = JSON.parse<Any>(Json.stringify(serializer,data))
+actual suspend fun <T> DocumentReference.set(data: T, serializer: KSerializer<T>, then: suspend () -> Unit) {
+    val obj = JSON.parse<Any>(Json.stringify(serializer, data))
     set(obj).await()
     then()
+}
+
+actual suspend fun DocumentReference.fetch(): DocumentSnapshot = get().await()
+
+actual suspend fun <T : Any> DocumentReference.put(data: T, serializer: KSerializer<T>) {
+    val obj = JSON.parse<Any>(Json.stringify(serializer, data))
+    set(obj).await()
 }

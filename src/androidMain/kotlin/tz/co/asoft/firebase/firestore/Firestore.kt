@@ -1,6 +1,7 @@
 package tz.co.asoft.firebase.firestore
 
 import tz.co.asoft.firebase.core.FirebaseApp
+import tz.co.asoft.firebase.firestore.batch.WriteBatch
 import tz.co.asoft.firebase.firestore.collection.CollectionReference
 import tz.co.asoft.firebase.firestore.document.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore as GFirebaseFirestore
@@ -19,5 +20,7 @@ actual fun FirebaseFirestore.document(path: String): DocumentReference {
 }
 
 actual fun FirebaseApp.firestore(): FirebaseFirestore {
-    return GFirebaseFirestore.getInstance(this)
+    return FirebaseFirestore.getInstance(this)
 }
+
+actual fun FirebaseFirestore.batch(): WriteBatch = batch()

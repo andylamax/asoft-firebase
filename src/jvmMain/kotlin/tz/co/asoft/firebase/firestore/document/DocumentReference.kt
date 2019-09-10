@@ -7,7 +7,7 @@ import tz.co.asoft.firebase.firestore.snapshot.DocumentSnapshot
 
 actual class DocumentReference
 
-actual val DocumentReference.Firestore: FirebaseFirestore
+actual val DocumentReference.firestore: FirebaseFirestore
     get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
 actual val DocumentReference.id: String
     get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
@@ -20,8 +20,18 @@ actual suspend fun DocumentReference.get(then: suspend (DocumentSnapshot) -> Uni
 }
 
 actual suspend fun <T> DocumentReference.set(
-        data: T,
-        serializer: KSerializer<T>,
-        then: suspend () -> Unit
+    data: T,
+    serializer: KSerializer<T>,
+    then: suspend () -> Unit
+) {
+}
+
+actual suspend fun DocumentReference.fetch(): DocumentSnapshot {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+}
+
+actual suspend fun <T : Any> DocumentReference.put(
+    data: T,
+    serializer: KSerializer<T>
 ) {
 }

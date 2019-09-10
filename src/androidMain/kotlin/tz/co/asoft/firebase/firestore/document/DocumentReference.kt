@@ -10,7 +10,7 @@ import tz.co.asoft.firebase.firestore.tools.await
 
 actual typealias DocumentReference = com.google.firebase.firestore.DocumentReference
 
-actual val DocumentReference.Firestore: FirebaseFirestore
+actual val DocumentReference.firestore: FirebaseFirestore
     get() = firestore
 
 actual val DocumentReference.id: String
@@ -25,4 +25,10 @@ actual fun DocumentReference.collection(path: String): CollectionReference = col
 actual suspend fun <T> DocumentReference.set(data: T, serializer: KSerializer<T>, then: suspend () -> Unit) {
     set(data as Any).await()
     then()
+}
+
+actual suspend fun DocumentReference.fetch(): DocumentSnapshot = get().await()
+
+actual suspend fun <T : Any> DocumentReference.put(data: T, serializer: KSerializer<T>) {
+    set(data).await()
 }

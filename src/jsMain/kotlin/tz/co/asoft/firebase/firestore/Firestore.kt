@@ -1,6 +1,7 @@
 package tz.co.asoft.firebase.firestore
 
 import tz.co.asoft.firebase.core.FirebaseApp
+import tz.co.asoft.firebase.firestore.batch.WriteBatch
 import tz.co.asoft.firebase.firestore.collection.CollectionReference
 import tz.co.asoft.firebase.firestore.document.DocumentReference
 
@@ -14,6 +15,8 @@ actual external class FirebaseFirestore {
 
     @JsName("doc")
     fun document(path: String): DocumentReference
+
+    fun batch(): WriteBatch
 }
 
 actual val FirebaseFirestore.app: FirebaseApp
@@ -33,3 +36,5 @@ actual fun FirebaseApp.firestore(): FirebaseFirestore {
     }
     return firestore()
 }
+
+actual fun FirebaseFirestore.batch(): WriteBatch = batch()

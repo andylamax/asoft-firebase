@@ -18,8 +18,6 @@ actual external class CollectionReference : Query {
     @JsName("doc")
     fun doc(path: String? = definedExternally): DocumentReference
 
-//    fun get(): Promise<QuerySnapshot>
-
     fun add(obj: Any): Promise<DocumentReference>
 }
 
@@ -47,7 +45,19 @@ actual suspend fun CollectionReference.forEachAsync(action: (QueryDocumentSnapsh
     get().await().forEach(action)
 }
 
-actual suspend fun <T> CollectionReference.add(data: T, serializer: KSerializer<T>, then: suspend (DocumentReference) -> Unit) {
+actual suspend fun <T> CollectionReference.add(
+    data: T,
+    serializer: KSerializer<T>,
+    then: suspend (DocumentReference) -> Unit
+) {
     val json = Json.nonstrict.stringify(serializer, data)
     then(add(JSON.parse(json)).await())
+}
+
+actual suspend fun <T : Any> CollectionReference.put(
+    data: T,
+    serializer: KSerializer<T>
+): DocumentReference {
+    val json = Json.nonstrict.stringify(serializer, data)
+    return add(JSON.parse(json)).await()
 }
