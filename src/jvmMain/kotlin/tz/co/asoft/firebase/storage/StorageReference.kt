@@ -1,5 +1,7 @@
 package tz.co.asoft.firebase.storage
 
+import tz.co.asoft.io.file.File
+
 actual class StorageReference
 
 actual val StorageReference.root: StorageReference

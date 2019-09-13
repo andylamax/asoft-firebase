@@ -8,7 +8,7 @@ import tz.co.asoft.auth.dao.AuthLocalDao
 import tz.co.asoft.auth.exceptions.Exceptions
 import tz.co.asoft.firebase.auth.dao.AuthFirebaseAbstractDao
 import tz.co.asoft.firebase.firestore.repo.FirebaseRepo
-import tz.co.asoft.firebase.storage.File
+import tz.co.asoft.io.file.File
 import tz.co.asoft.persist.result.Result
 import tz.co.asoft.persist.tools.Cause
 import tz.co.asoft.rx.lifecycle.LifeCycle
@@ -17,7 +17,7 @@ import tz.co.asoft.rx.observers.Observable
 import tz.co.asoft.rx.subscriber.Subscriber
 
 abstract class AuthFirebaseAbstractRepo(private val dao: AuthFirebaseAbstractDao, private val localDao: AuthAbstractLocalDao) :
-    FirebaseRepo<User>(dao) {
+        FirebaseRepo<User>(dao) {
     open val loggedUser = LiveData<User?>(null)
     open var currentUser = Observable<User?>(null)
 

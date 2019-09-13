@@ -2,6 +2,7 @@ package tz.co.asoft.firebase.storage
 
 import android.net.Uri
 import tz.co.asoft.firebase.firestore.tools.await
+import tz.co.asoft.io.file.File
 import java.io.InputStream
 
 actual typealias StorageReference = com.google.firebase.storage.StorageReference
