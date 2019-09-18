@@ -40,8 +40,8 @@ class AuthFirebaseDao private constructor(
     override suspend fun create(list: List<User>): List<User>? {
         list.forEach {
             val auth = app.auth()
-            val res = auth.makeUserWithEmailAndPassword(it.emails[0], it.password).user
-                    ?: throw Cause("Couldn't create an account for you. Try again")
+            val res = auth.makeUserWithEmailAndPassword(it.emails.elementAt(0), it.password).user
+                    ?: throw Cause("Couldn't create an account for ${it.name}. Try again")
             it.uid = res.uid
             auth.logout()
             it.password = SHA256.digest(it.password.toUtf8Bytes()).hex
@@ -79,7 +79,7 @@ class AuthFirebaseDao private constructor(
 
     override suspend fun uploadPhoto(user: User, file: File): User? {
         val ref = app.storage().ref("user_profile_photos/${user.uid}")
-        val task = ref.put(file)
+        val task = ref.upload(file)
         task.await()
         user.photoUrl = ref.downloadUrl() ?: return null
         return edit(user)

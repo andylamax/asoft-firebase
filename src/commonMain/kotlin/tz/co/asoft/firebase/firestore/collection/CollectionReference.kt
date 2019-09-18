@@ -16,7 +16,7 @@ expect val CollectionReference.path: String
 expect fun CollectionReference.doc(documentPath: String? = null): DocumentReference
 expect fun CollectionReference.addListener(listener: (QuerySnapshot) -> Unit)
 
-@Deprecated("Use put")
+@Deprecated("Use upload")
 expect suspend fun <T> CollectionReference.add(
     data: T,
     serializer: KSerializer<T>,

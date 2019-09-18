@@ -15,7 +15,7 @@ actual fun StorageReference.child(path: String): StorageReference {
  * JavaScript Accepts:  Blob, Uint8Array and ArrayBuffer
  * Android Accepts:     ByteArray, android.content.Uri, InputStream
  */
-actual fun StorageReference.put(file: File): UploadTask {
+actual fun StorageReference.upload(file: File): UploadTask {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 }
 
@@ -23,5 +23,5 @@ actual suspend fun StorageReference.downloadUrl(): String? {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 }
 
-actual suspend fun StorageReference.delete() {
+actual suspend fun StorageReference.remove() {
 }

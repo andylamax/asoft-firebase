@@ -2,7 +2,7 @@ package tz.co.asoft.firebase.storage
 
 import tz.co.asoft.firebase.core.FirebaseApp
 
-@JsModule("firebase/firestore")
+@JsModule("firebase/storage")
 external val storageLib: dynamic
 
 actual external class FirebaseStorage {

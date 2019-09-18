@@ -19,13 +19,13 @@ actual val StorageReference.root: StorageReference get() = root
 
 actual fun StorageReference.child(path: String): StorageReference = child(path)
 
-actual fun StorageReference.put(file: File): UploadTask = when (val f = file.ref) {
+actual fun StorageReference.upload(file: File): UploadTask = when (val f = file.ref) {
     is Blob, is Uint8Array, is ArrayBuffer -> put(f)
-    else -> throw Exception("Firebase storage can't put data of type ${f::class}")
+    else -> throw Exception("Firebase storage can't upload data of type ${f::class}")
 }
 
 actual suspend fun StorageReference.downloadUrl() = getDownloadURL().await()
 
-actual suspend fun StorageReference.delete() {
-    delete().await() != null
+actual suspend fun StorageReference.remove() {
+    delete().await()
 }

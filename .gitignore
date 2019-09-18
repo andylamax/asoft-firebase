@@ -7,3 +7,4 @@ build/**
 /build
 *.iml
 local.properties
+publish.sh
