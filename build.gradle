@@ -90,7 +90,7 @@ kotlin {
     }
 
     js() {
-        browser()
+//        browser()
         compilations.all {
             tasks[compileKotlinTaskName].kotlinOptions {
                 kotlinOptions.metaInfo = true
