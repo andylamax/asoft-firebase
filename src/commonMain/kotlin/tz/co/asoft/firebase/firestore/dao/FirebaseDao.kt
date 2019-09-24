@@ -26,14 +26,14 @@ import tz.co.asoft.rx.lifecycle.LiveData
 import tz.co.asoft.rx.lifecycle.Observer
 
 open class FirebaseDao<T : Entity>(
-    open val firestore: FirebaseFirestore,
-    open val collectionName: String,
-    open val serializer: KSerializer<T>
+        open val firestore: FirebaseFirestore,
+        open val collectionName: String,
+        open val serializer: KSerializer<T>
 ) : Dao<T>() {
 
     open val batch get() = firestore.batch()
 
-    val collection = firestore.collection(collectionName)
+    val collection by lazy { firestore.collection(collectionName) }
 
     open fun docRef(id: String) = collection.doc(id)
 
@@ -63,14 +63,14 @@ open class FirebaseDao<T : Entity>(
         users.mapNotNull { it.await() }
     }
 
-    fun live(t: T) = LiveData(t).apply {
+    open fun live(t: T) = LiveData(t).apply {
         docRef(t.uid).addListener { doc -> doc.toObject(serializer)?.let { value = it } }
     }
 
     override suspend fun observeCatching(lifeCycle: LifeCycle, onChange: (Result<List<T>>) -> Unit) =
-        getLiveData().map {
-            Result(it)
-        }.observe(lifeCycle, onChange)
+            getLiveData().map {
+                Result(it)
+            }.observe(lifeCycle, onChange)
 
     override suspend fun observeForeverCatching(onChange: (Result<List<T>>) -> Unit) = getLiveData().map {
         Result(it)

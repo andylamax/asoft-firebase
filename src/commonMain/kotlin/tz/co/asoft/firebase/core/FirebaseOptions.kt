@@ -1,6 +1,6 @@
 package tz.co.asoft.firebase.core
 
-expect class FirebaseOptions{}
+expect class FirebaseOptions
 
 expect var FirebaseOptions.apiKey: String
 expect var FirebaseOptions.authDomain: String
@@ -11,6 +11,7 @@ expect var FirebaseOptions.messagingSenderId: String
 expect var FirebaseOptions.appId: String
 
 expect class FirebaseOptionsBuilder()
+
 expect var FirebaseOptionsBuilder.apiKey: String
 expect var FirebaseOptionsBuilder.authDomain: String
 expect var FirebaseOptionsBuilder.databaseUrl: String
