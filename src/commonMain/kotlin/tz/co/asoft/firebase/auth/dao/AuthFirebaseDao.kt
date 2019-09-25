@@ -20,17 +20,13 @@ import tz.co.asoft.firebase.storage.*
 import tz.co.asoft.io.file.File
 import tz.co.asoft.persist.tools.Cause
 
-class AuthFirebaseDao private constructor(
-        val firebase: FirebaseApp,
-        override val serializer: KSerializer<User>
-) : AuthFirebaseAbstractDao(firebase.firestore(), "users", serializer) {
+class AuthFirebaseDao private constructor(val firebase: FirebaseApp) : AuthFirebaseAbstractDao(firebase.firestore()) {
 
     companion object {
         private var instance: AuthFirebaseAbstractDao? = null
         fun getInstance(
-                firebase: FirebaseApp,
-                serializer: KSerializer<User>
-        ): AuthFirebaseAbstractDao = instance ?: AuthFirebaseDao(firebase, serializer).also {
+                firebase: FirebaseApp
+        ): AuthFirebaseAbstractDao = instance ?: AuthFirebaseDao(firebase).also {
             instance = it
         }
     }
