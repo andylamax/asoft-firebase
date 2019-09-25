@@ -4,7 +4,7 @@ import tz.co.asoft.firebase.core.FirebaseApp
 import kotlinx.coroutines.await
 import kotlin.js.Promise
 
-@JsModule("firebase/firestore")
+@JsModule("firebase/auth")
 external val authLib: dynamic
 
 actual external class FirebaseAuth {
