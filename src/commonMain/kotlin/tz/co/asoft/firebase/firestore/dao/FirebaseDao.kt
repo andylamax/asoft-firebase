@@ -39,7 +39,7 @@ open class FirebaseDao<T : Entity>(
 
     override suspend fun create(list: List<T>): List<T>? = batch.run {
         list.forEach {
-            val doc = collection.doc()
+            val doc = if (it.uid.isNotBlank()) collection.doc(it.uid) else collection.doc()
             put(doc, it.apply { uid = doc.id }, serializer)
         }
         submit()
