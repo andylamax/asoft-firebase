@@ -5,8 +5,7 @@ import kotlinx.coroutines.launch
 import tz.co.asoft.auth.User
 import tz.co.asoft.firebase.auth.repo.AuthFirebaseAbstractRepo
 
-class SignOutUseCase private constructor(
-        private val repo: AuthFirebaseAbstractRepo,
+class SignOutUseCase(
         private val authStateUC: AuthStateUseCase,
         private val updateStatusUC: UpdateStatusUseCase
 ) {
