@@ -38,7 +38,7 @@ tasks.whenTaskAdded { task ->
 }
 
 group 'tz.co.asoft'
-version '6.2.0'
+version '7.0.0'
 
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
