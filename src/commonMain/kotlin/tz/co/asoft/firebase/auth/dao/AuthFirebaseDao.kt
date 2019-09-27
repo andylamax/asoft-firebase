@@ -49,6 +49,6 @@ class AuthFirebaseDao private constructor(firestore: FirebaseFirestore, private 
         val task = ref.upload(photo)
         task.await()
         user.photoUrl = ref.downloadUrl() ?: return null
-        return edit(user)
+        return user
     }
 }
