@@ -3,6 +3,7 @@ package tz.co.asoft.firebase.auth.dao
 import tz.co.asoft.auth.User
 import tz.co.asoft.auth.dao.IAuthDao
 import tz.co.asoft.auth.exceptions.Exceptions
+import tz.co.asoft.auth.repo.AuthRepo
 import tz.co.asoft.firebase.core.FirebaseApp
 import tz.co.asoft.firebase.firestore.FirebaseFirestore
 import tz.co.asoft.firebase.firestore.dao.FirebaseDao
