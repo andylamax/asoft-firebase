@@ -13,18 +13,15 @@ import tz.co.asoft.persist.tools.Cause
 
 class RegisterUserUseCase(
         private val auth: FirebaseAuth,
-        private val repo: Repo<User>,
-        private val signInUC: ISignInUseCase
+        private val repo: Repo<User>
 ) : IRegisterUserUseCase {
 
     override suspend operator fun invoke(user: User): Result<User> = try {
-        val pwd = user.password
         val res = auth.makeUserWithEmailAndPassword(user.emails.first(), user.password).user ?: throw cause(user)
         user.uid = res.uid
         auth.logout()
         user.password = SHA256.digest(user.password.toUtf8Bytes()).hex
-        repo.create(user) ?: throw Cause("Failed to store ${user.name}'s info")
-        signInUC(user.emails.first(), pwd)
+        repo.createCatching(user)
     } catch (c: Cause) {
         Result.failure(c)
     }

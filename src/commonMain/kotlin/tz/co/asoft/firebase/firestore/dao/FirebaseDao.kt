@@ -29,7 +29,7 @@ open class FirebaseDao<T : Entity>(
         open val firestore: FirebaseFirestore,
         open val collectionName: String,
         open val serializer: KSerializer<T>
-) : Dao<T>() {
+) : Dao<T>(), IFirebaseDao<T> {
 
     open val batch get() = firestore.batch()
 
@@ -63,7 +63,7 @@ open class FirebaseDao<T : Entity>(
         users.mapNotNull { it.await() }
     }
 
-    open fun live(t: T) = LiveData(t).apply {
+    override fun live(t: T) = LiveData(t).apply {
         docRef(t.uid).addListener { doc -> doc.toObject(serializer)?.let { value = it } }
     }
 

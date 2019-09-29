@@ -1,5 +1,7 @@
 package tz.co.asoft.firebase.auth.dao
 
+import tz.co.asoft.auth.Email
+import tz.co.asoft.auth.Phone
 import tz.co.asoft.auth.User
 import tz.co.asoft.auth.dao.IAuthDao
 import tz.co.asoft.auth.exceptions.Exceptions
@@ -37,12 +39,12 @@ class AuthFirebaseDao private constructor(firestore: FirebaseFirestore, private 
         }
     }
 
-    override suspend fun emailSignIn(email: String, pwd: String): User? {
-        return signIn("email", email, pwd)
+    override suspend fun load(email: Email, pwd: String): User? {
+        return signIn("email", email.value, pwd)
     }
 
-    override suspend fun phoneSignIn(phone: String, pwd: String): User? {
-        return signIn("phone", phone, pwd)
+    override suspend fun load(phone: Phone, pwd: String): User? {
+        return signIn("phone", phone.value, pwd)
     }
 
     override suspend fun uploadPhoto(user: User, photo: File): User? {
