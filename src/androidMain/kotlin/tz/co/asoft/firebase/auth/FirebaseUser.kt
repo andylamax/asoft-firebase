@@ -15,3 +15,7 @@ actual val FirebaseUser.isAnonymous get() = isAnonymous
 actual suspend fun FirebaseUser.remove() {
     delete().await()
 }
+
+actual suspend fun FirebaseUser.reAuthenticate(credential: AuthCredential) {
+    reauthenticate(credential).await()
+}

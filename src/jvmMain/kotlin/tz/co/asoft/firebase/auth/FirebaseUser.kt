@@ -19,3 +19,6 @@ actual val FirebaseUser.isAnonymous: Boolean
 
 actual suspend fun FirebaseUser.remove() {
 }
+
+actual suspend fun FirebaseUser.reAuthenticate(credential: AuthCredential) {
+}

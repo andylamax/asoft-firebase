@@ -16,14 +16,12 @@ class RegisterUserUseCase(
         private val repo: Repo<User>
 ) : IRegisterUserUseCase {
 
-    override suspend operator fun invoke(user: User): Result<User> = try {
+    override suspend operator fun invoke(user: User) = Result.catching {
         val res = auth.makeUserWithEmailAndPassword(user.emails.first(), user.password).user ?: throw cause(user)
         user.uid = res.uid
         auth.logout()
         user.password = SHA256.digest(user.password.toUtf8Bytes()).hex
-        repo.createCatching(user)
-    } catch (c: Cause) {
-        Result.failure(c)
+        repo.create(user)
     }
 
     private fun cause(u: User) = Cause("Couldn't create an account for ${u.name}. Try again")
