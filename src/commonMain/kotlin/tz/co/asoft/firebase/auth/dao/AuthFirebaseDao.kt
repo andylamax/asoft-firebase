@@ -7,18 +7,18 @@ import tz.co.asoft.auth.dao.IAuthDao
 import tz.co.asoft.auth.exceptions.Exceptions
 import tz.co.asoft.firebase.firestore.FirebaseFirestore
 import tz.co.asoft.firebase.firestore.dao.FirebaseDao
+import tz.co.asoft.firebase.firestore.dao.IFirebaseDao
 import tz.co.asoft.firebase.firestore.query.fetch
 import tz.co.asoft.firebase.firestore.query.where
 import tz.co.asoft.firebase.firestore.snapshot.documents
 import tz.co.asoft.firebase.firestore.snapshot.toObject
 import tz.co.asoft.firebase.storage.*
 import tz.co.asoft.io.file.File
-import tz.co.asoft.persist.dao.Dao
 import tz.co.asoft.persist.tools.Cause
 
 class AuthFirebaseDao private constructor(firestore: FirebaseFirestore, private val storage: FirebaseStorage) : FirebaseDao<User>(firestore, "users", User.serializer()), IAuthDao {
     companion object {
-        private var instance: Dao<User>? = null
+        private var instance: IAuthDao? = null
         fun getInstance(firestore: FirebaseFirestore, storage: FirebaseStorage) = instance
                 ?: AuthFirebaseDao(firestore, storage).also {
                     instance = it

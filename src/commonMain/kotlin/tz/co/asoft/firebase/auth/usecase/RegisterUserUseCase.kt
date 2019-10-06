@@ -5,15 +5,14 @@ import kotlinx.serialization.toUtf8Bytes
 import tz.co.asoft.auth.User
 import tz.co.asoft.auth.tools.hex.hex
 import tz.co.asoft.auth.usecase.registeruser.IRegisterUserUseCase
-import tz.co.asoft.auth.usecase.signin.ISignInUseCase
 import tz.co.asoft.firebase.auth.*
-import tz.co.asoft.persist.repo.Repo
+import tz.co.asoft.persist.repo.IRepo
 import tz.co.asoft.persist.result.Result
 import tz.co.asoft.persist.tools.Cause
 
 class RegisterUserUseCase(
         private val auth: FirebaseAuth,
-        private val repo: Repo<User>
+        private val repo: IRepo<User>
 ) : IRegisterUserUseCase {
 
     override suspend operator fun invoke(user: User) = Result.catching {
