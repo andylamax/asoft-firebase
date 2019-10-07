@@ -5,6 +5,7 @@ import tz.co.asoft.firebase.firestore.FirebaseFirestore
 import tz.co.asoft.persist.model.Entity
 import kotlin.reflect.KClass
 
+@Deprecated("Just try not to use this")
 object FirebaseDaoFactory {
     val daos = mutableMapOf<KClass<*>, FirebaseDao<*>>()
 
