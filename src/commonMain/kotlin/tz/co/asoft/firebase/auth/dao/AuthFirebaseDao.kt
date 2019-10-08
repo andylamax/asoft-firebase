@@ -16,16 +16,8 @@ import tz.co.asoft.firebase.storage.*
 import tz.co.asoft.io.file.File
 import tz.co.asoft.persist.tools.Cause
 
-class AuthFirebaseDao private constructor(firestore: FirebaseFirestore, private val storage: FirebaseStorage) : FirebaseDao<User>(firestore, "users", User.serializer()), IAuthDao {
-    companion object {
-        private var instance: IAuthDao? = null
-        fun getInstance(firestore: FirebaseFirestore, storage: FirebaseStorage) = instance
-                ?: AuthFirebaseDao(firestore, storage).also {
-                    instance = it
-                }
-    }
-
-    suspend fun load(method: String, key: String, pwd: String): User? {
+class AuthFirebaseDao(firestore: FirebaseFirestore, private val storage: FirebaseStorage) : FirebaseDao<User>(firestore, "users", User.serializer()), IAuthDao {
+    private suspend fun load(method: String, key: String, pwd: String): User? {
         val qs = collection.where("${method}s", "array-contains", key).fetch()
         val user = qs.documents.getOrNull(0)?.toObject(serializer) ?: throw Cause(Exceptions.UserNotFound.name)
         if (user.password == pwd) {
