@@ -21,7 +21,7 @@ import tz.co.asoft.firebase.firestore.snapshot.toObjects
 import tz.co.asoft.persist.dao.IDao
 import tz.co.asoft.persist.model.Entity
 import tz.co.asoft.persist.result.Result
-import tz.co.asoft.rx.lifecycle.LifeCycle
+import tz.co.asoft.rx.lifecycle.ILifeCycle
 import tz.co.asoft.rx.lifecycle.LiveData
 
 interface IFirebaseDao<T : Entity> : IDao<T> {
@@ -68,7 +68,7 @@ interface IFirebaseDao<T : Entity> : IDao<T> {
         docRef(t.uid).addListener { doc -> doc.toObject(serializer)?.let { value = it } }
     }
 
-    override suspend fun observeCatching(lifeCycle: LifeCycle, onChange: (Result<List<T>>) -> Unit) =
+    override suspend fun observeCatching(lifeCycle: ILifeCycle, onChange: (Result<List<T>>) -> Unit) =
             getLiveData().map {
                 Result(it)
             }.observe(lifeCycle, onChange)
