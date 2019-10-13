@@ -8,7 +8,7 @@ actual object Firebase {
         return if (name != null) {
             GFirebaseApp.initializeApp(ctx, options, name)
         } else {
-            GFirebaseApp.initializeApp(ctx, options)
+            GFirebaseApp.getApps(ctx).firstOrNull() ?: GFirebaseApp.initializeApp(ctx, options)
         }
     }
 }

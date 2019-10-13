@@ -3,7 +3,7 @@ buildscript {
         kotlin_version = '1.3.50'
         serialization_version = "0.12.0"
         firebase_js_version = "5.11.1"
-        auth_version = "18.0.0"
+        auth_version = "19.0.0"
         asoft_io_version = "2.0.0"
         coroutines_version = "1.3.0"
 
@@ -38,7 +38,7 @@ tasks.whenTaskAdded { task ->
 }
 
 group 'tz.co.asoft'
-version '13.0.0'
+version '14.0.0'
 
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
