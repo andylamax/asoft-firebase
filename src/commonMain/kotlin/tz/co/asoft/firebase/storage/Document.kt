@@ -13,5 +13,5 @@ open class Document : Neo4JEntity {
     open var url = ""
     open var uploader = UserRef()
     open var uploaded = DateTime.nowUnixLong()
-    open var permits = mutableSetOf<String>()
+    open var permits = mutableListOf<String>()
 }
