@@ -14,4 +14,5 @@ open class Document : Neo4JEntity {
     open var uploader = UserRef()
     open var uploaded = DateTime.nowUnixLong()
     open var permits = mutableListOf<String>()
+    open var metadata = mutableMapOf<String, String>()
 }

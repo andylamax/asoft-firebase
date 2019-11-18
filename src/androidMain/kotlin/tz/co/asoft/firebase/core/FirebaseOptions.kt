@@ -10,19 +10,19 @@ actual var FirebaseOptions.authDomain: String
     set(_) {}
     get() = ""
 
-actual var FirebaseOptions.databaseUrl: String
+actual var FirebaseOptions.databaseUrl: String?
     set(_) {}
     get() = databaseUrl
 
-actual var FirebaseOptions.projectId: String
+actual var FirebaseOptions.projectId: String?
     set(_) {}
     get() = projectId
 
-actual var FirebaseOptions.storageBucket: String
+actual var FirebaseOptions.storageBucket: String?
     set(_) {}
     get() = storageBucket
 
-actual var FirebaseOptions.messagingSenderId: String
+actual var FirebaseOptions.messagingSenderId: String?
     set(_) {}
     get() = gcmSenderId
 

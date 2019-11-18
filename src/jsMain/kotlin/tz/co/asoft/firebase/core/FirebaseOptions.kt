@@ -5,10 +5,10 @@ import tz.co.asoft.firebase.tools.Object
 actual class FirebaseOptions {
     var apiKey = ""
     var authDomain = ""
-    var databaseURL = ""
-    var projectId = ""
-    var storageBucket = ""
-    var messagingSenderId = ""
+    var databaseURL: String? = ""
+    var projectId: String? = ""
+    var storageBucket: String? = ""
+    var messagingSenderId: String? = ""
     var appId = ""
 }
 
@@ -24,25 +24,25 @@ actual var FirebaseOptions.authDomain: String
         authDomain = value
     }
 
-actual var FirebaseOptions.databaseUrl: String
+actual var FirebaseOptions.databaseUrl: String?
     get() = databaseURL
     set(value) {
         databaseURL = value
     }
 
-actual var FirebaseOptions.projectId: String
+actual var FirebaseOptions.projectId: String?
     get() = projectId
     set(value) {
         projectId = value
     }
 
-actual var FirebaseOptions.storageBucket: String
+actual var FirebaseOptions.storageBucket: String?
     get() = storageBucket
     set(value) {
         storageBucket = value
     }
 
-actual var FirebaseOptions.messagingSenderId: String
+actual var FirebaseOptions.messagingSenderId: String?
     get() = messagingSenderId
     set(value) {
         messagingSenderId = value

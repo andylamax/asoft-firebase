@@ -4,10 +4,10 @@ expect class FirebaseOptions
 
 expect var FirebaseOptions.apiKey: String
 expect var FirebaseOptions.authDomain: String
-expect var FirebaseOptions.databaseUrl: String
-expect var FirebaseOptions.projectId: String
-expect var FirebaseOptions.storageBucket: String
-expect var FirebaseOptions.messagingSenderId: String
+expect var FirebaseOptions.databaseUrl: String?
+expect var FirebaseOptions.projectId: String?
+expect var FirebaseOptions.storageBucket: String?
+expect var FirebaseOptions.messagingSenderId: String?
 expect var FirebaseOptions.appId: String
 
 expect class FirebaseOptionsBuilder()

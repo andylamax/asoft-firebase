@@ -7,10 +7,10 @@ buildscript {
         asoft_io_version = "2.0.0"
         coroutines_version = "1.3.0"
 
-        firebase_core_version = "17.0.0"
-        firebase_firestore_version = "20.0.0"
-        firebase_auth_version = "18.0.0"
-        firebase_storage_version = "18.0.0"
+        firebase_core_version = "17.2.1"
+        firebase_firestore_version = "21.3.0"
+        firebase_auth_version = "19.1.0"
+        firebase_storage_version = "19.1.0"
 
         firebase_admin_version = "6.9.0"
     }
@@ -38,7 +38,7 @@ tasks.whenTaskAdded { task ->
 }
 
 group 'tz.co.asoft'
-version '19.0.1'
+version '20.0.0'
 
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
@@ -75,7 +75,6 @@ repositories {
     maven { url "https://jitpack.io" }
     maven { url "http://dl.bintray.com/kotlin/ktor" }
 }
-
 
 kotlin {
     jvm() {
@@ -128,7 +127,6 @@ kotlin {
             }
         }
 
-
         jvmMain {
             dependencies {
                 implementation kotlin('stdlib-jdk8')
@@ -145,9 +143,9 @@ kotlin {
                 api "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version"
                 api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
                 api "com.google.firebase:firebase-core:$firebase_core_version"
-                api "com.google.firebase:firebase-firestore:$firebase_firestore_version"
+                api "com.google.firebase:firebase-firestore-ktx:$firebase_firestore_version"
                 api "com.google.firebase:firebase-auth:$firebase_auth_version"
-                api "com.google.firebase:firebase-storage:$firebase_storage_version"
+                api "com.google.firebase:firebase-storage-ktx:$firebase_storage_version"
                 api "com.github.andylamax.asoft-auth:asoft-auth-android:$auth_version"
                 api "com.github.andylamax.asoft-io:asoft-io-android:$asoft_io_version"
             }

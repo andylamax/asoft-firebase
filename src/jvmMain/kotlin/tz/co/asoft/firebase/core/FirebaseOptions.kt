@@ -8,16 +8,16 @@ actual var FirebaseOptions.apiKey: String
 actual var FirebaseOptions.authDomain: String
     get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
     set(value) {}
-actual var FirebaseOptions.databaseUrl: String
+actual var FirebaseOptions.databaseUrl: String?
     get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
     set(value) {}
-actual var FirebaseOptions.projectId: String
+actual var FirebaseOptions.projectId: String?
     get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
     set(value) {}
-actual var FirebaseOptions.storageBucket: String
+actual var FirebaseOptions.storageBucket: String?
     get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
     set(value) {}
-actual var FirebaseOptions.messagingSenderId: String
+actual var FirebaseOptions.messagingSenderId: String?
     get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
     set(value) {}
 actual var FirebaseOptions.appId: String
