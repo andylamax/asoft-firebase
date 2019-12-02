@@ -47,23 +47,32 @@ interface IFirebaseDao<T : Entity> : IDao<T> {
         list
     }
 
+    override suspend fun create(t: T): T? = create(listOf(t))?.firstOrNull()
+
     override suspend fun edit(list: List<T>): List<T>? = batch.run {
         list.forEach { put(collection.doc(it.uid), it, serializer) }
         submit()
         list
     }
 
-    override suspend fun delete(list: List<T>): List<T>? = batch.run {
+    override suspend fun edit(t: T): T? = edit(listOf(t))?.firstOrNull()
+
+    override suspend fun wipe(list: List<T>): List<T>? = batch.run {
         list.forEach { delete(docRef(it.uid)) }
         submit()
         return list
     }
+
+    override suspend fun wipe(t: T): T? = wipe(listOf(t))?.firstOrNull()
 
     override suspend fun load(ids: List<Any>): List<T>? = coroutineScope {
         val users = ids.map { async { docRef(it.toString()).fetch().toObject(serializer) } }
         users.mapNotNull { it.await() }
     }
 
+    override suspend fun load(id: Any): T? = load(listOf(id))?.firstOrNull()
+
+    @Deprecated("asoft-rx lib will stop being used")
     fun live(t: T) = LiveData(t).apply {
         docRef(t.uid).addListener { doc -> doc.toObject(serializer)?.let { value = it } }
     }
