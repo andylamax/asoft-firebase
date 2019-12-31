@@ -1,3 +1,5 @@
+@file:JvmName("JVMDocumentSnapshot")
+
 package tz.co.asoft.firebase.firestore.snapshot
 
 import kotlinx.serialization.KSerializer

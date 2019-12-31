@@ -1,3 +1,5 @@
+@file:JvmName("AndroidDocumentSnapshot")
+
 package tz.co.asoft.firebase.firestore.snapshot
 
 import com.google.gson.Gson
