@@ -1,6 +1,6 @@
 package tz.co.asoft.firebase.storage
 
-import tz.co.asoft.io.file.File
+import tz.co.asoft.io.File
 
 expect class StorageReference
 

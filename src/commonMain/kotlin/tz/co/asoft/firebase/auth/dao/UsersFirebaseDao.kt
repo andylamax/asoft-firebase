@@ -12,7 +12,7 @@ import tz.co.asoft.firebase.firestore.query.where
 import tz.co.asoft.firebase.firestore.snapshot.documents
 import tz.co.asoft.firebase.firestore.snapshot.toObject
 import tz.co.asoft.firebase.storage.*
-import tz.co.asoft.io.file.File
+import tz.co.asoft.io.File
 import tz.co.asoft.persist.tools.Cause
 
 class UsersFirebaseDao(firestore: FirebaseFirestore, private val storage: FirebaseStorage) : FirebaseDao<User>(firestore, "users", User.serializer()), IUsersDao {

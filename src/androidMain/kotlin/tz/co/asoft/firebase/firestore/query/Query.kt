@@ -1,3 +1,5 @@
+@file:JvmName("AndroidQuery")
+
 package tz.co.asoft.firebase.firestore.query
 
 import tz.co.asoft.firebase.firestore.snapshot.QuerySnapshot
@@ -12,6 +14,7 @@ actual suspend fun Query.get(then: suspend (QuerySnapshot) -> Unit) {
 }
 
 actual fun Query.limit(limit: Long): Query = limit(limit)
+
 actual fun Query.where(fieldPath: String, operator: String, value: Any): Query = when (operator) {
     "<" -> whereLessThan(fieldPath, value)
     "<=" -> whereLessThanOrEqualTo(fieldPath, value)

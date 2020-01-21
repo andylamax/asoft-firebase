@@ -2,7 +2,7 @@ package tz.co.asoft.firebase.storage
 
 import android.net.Uri
 import tz.co.asoft.firebase.firestore.tools.await
-import tz.co.asoft.io.file.File
+import tz.co.asoft.io.File
 import java.io.InputStream
 import java.io.File as JavaFile
 
