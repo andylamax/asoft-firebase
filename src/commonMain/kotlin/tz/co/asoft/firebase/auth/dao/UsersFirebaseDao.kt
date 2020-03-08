@@ -1,10 +1,9 @@
 package tz.co.asoft.firebase.auth.dao
 
-import tz.co.asoft.auth.Email
-import tz.co.asoft.auth.Phone
 import tz.co.asoft.auth.User
 import tz.co.asoft.auth.UserAccount
 import tz.co.asoft.auth.dao.IUsersDao
+import tz.co.asoft.email.Email
 import tz.co.asoft.firebase.firestore.FirebaseFirestore
 import tz.co.asoft.firebase.firestore.dao.FirebaseDao
 import tz.co.asoft.firebase.firestore.query.fetch
@@ -14,6 +13,7 @@ import tz.co.asoft.firebase.firestore.snapshot.toObject
 import tz.co.asoft.firebase.storage.*
 import tz.co.asoft.io.File
 import tz.co.asoft.persist.tools.Cause
+import tz.co.asoft.phone.Phone
 
 class UsersFirebaseDao(firestore: FirebaseFirestore, private val storage: FirebaseStorage) : FirebaseDao<User>(firestore, "users", User.serializer()), IUsersDao {
     private suspend fun load(method: String, key: String, pwd: String): User? {

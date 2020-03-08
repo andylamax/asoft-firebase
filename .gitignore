@@ -1,10 +1,7 @@
-**/build
-/.gradle
-**/.gradle
-**/.idea
-/.idea
+build
+.gradle
+.idea
 build/**
-/build
 *.iml
 local.properties
 publish.sh

@@ -56,6 +56,8 @@ interface IFirebaseDao<T : Entity> : IDao<T> {
         return list
     }
 
+    override suspend fun delete(t: T) = wipe(t)
+
     override suspend fun wipe(t: T): T = wipe(listOf(t)).first()
 
     override suspend fun load(ids: List<Any>): List<T> = coroutineScope {
