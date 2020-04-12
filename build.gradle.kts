@@ -1,29 +1,10 @@
 import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
 plugins {
-    kotlin("multiplatform") version "1.3.70"
-    kotlin("plugin.serialization") version "1.3.70"
-    id("com.android.library") version "3.6.0"
+    kotlin("multiplatform")
+    kotlin("plugin.serialization")
+    id("com.android.library")
     id("maven-publish")
-}
-
-object versions {
-    object kotlin {
-        val coroutines = "1.3.4"
-    }
-
-    object asoft {
-        val auth = "31.0.0"
-        val test = "4.2.1"
-    }
-
-    object firebase {
-        val core = "17.2.1"
-        val firestore = "21.3.0"
-        val auth = "19.1.0"
-        val storage = "19.1.0"
-        val admin = "6.9.0"
-    }
 }
 
 fun andylamax(lib: String, platform: String, ver: String): String {
@@ -31,49 +12,22 @@ fun andylamax(lib: String, platform: String, ver: String): String {
 }
 
 fun KotlinDependencyHandler.asoftLibs(platform: String) {
-    api(andylamax("asoft-auth", platform, versions.asoft.auth))
+    api(asoftPrimary("auth", platform))
 }
 
-fun asoftTest(platform: String) = andylamax("asoft-test", platform, versions.asoft.test)
-
 group = "tz.co.asoft"
-version = "26.0.0"
+version = "27.0.0-alpha1"
 
 repositories {
     google()
     jcenter()
     maven(url = "https://jitpack.io")
+    maven(url = "https://dl.bintray.com/kotlin/kotlin-eap")
+    maven(url = "https://dl.bintray.com/kotlin/kotlin-dev")
 }
 
 android {
-    compileSdkVersion(28)
-    defaultConfig {
-        minSdkVersion(1)
-        testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
-    }
-
-    sourceSets {
-        val main by getting {
-            manifest.srcFile("src/androidMain/AndroidManifest.xml")
-            resources.srcDirs("src/androidMain/resources")
-        }
-    }
-
-    lintOptions {
-
-    }
-
-    buildTypes {
-        val release by getting {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-        }
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
+    configureAndroid()
 }
 
 kotlin {
